@@ -35,7 +35,7 @@ export default function IndustriesLayout({
 
   return (
     <>
-      {/* ─── 헤더+타일 리스트 (항상 유지) ─── */}
+      {/* Header */}
       <section className="bg-blue-50 py-20 text-center pt-40">
         <h1 className="text-4xl font-bold text-blue-800">
           Industries We Serve
@@ -45,6 +45,7 @@ export default function IndustriesLayout({
         </p>
       </section>
 
+      {/* Industry Tiles */}
       <section className="py-16 bg-white">
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 px-4 max-w-7xl mx-auto">
           {industries.map((it, i) => (
@@ -70,16 +71,31 @@ export default function IndustriesLayout({
         </div>
       </section>
 
-      {/* ─── 디테일 자리 ─── */}
+      {/* Detail Section */}
       <div ref={detailRef}>
         <AnimatePresence mode="wait">{children}</AnimatePresence>
       </div>
 
-      {/* Back-to-Top 버튼 */}
+      {/* CTA */}
+      <section className="py-16 bg-blue-800 text-white text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-2xl font-semibold mb-4">
+            Don’t see your industry?
+          </h2>
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-blue-800 px-6 py-3 rounded hover:bg-gray-100 transition"
+          >
+            Talk to a Specialist
+          </Link>
+        </div>
+      </section>
+
+      {/* Back-to-Top FAB */}
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Back to top"
         className="fixed bottom-6 right-6 w-10 h-10 bg-blue-700 text-white rounded-full shadow-lg hover:bg-blue-800 transition"
+        aria-label="Back to top"
       >
         ↑
       </button>

@@ -5,4 +5,5 @@ type Industry = {
     ratio?: "square" | "portrait" | "landscape" | "tall" | "wide";
     slug?: string;
     tagline?: string;
+    body?: string;
 };

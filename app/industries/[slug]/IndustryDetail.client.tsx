@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import type { Industry } from "@/data/industries"; // 타입 정의가 있다면
 
 export default function IndustryDetailClient({ item }: { item: Industry }) {
   return (
@@ -10,7 +9,7 @@ export default function IndustryDetailClient({ item }: { item: Industry }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 60 }}
       transition={{ duration: 0.45 }}
-      className="bg-gray-50 border-t border-gray-200 mt-8"
+      className="bg-gray-50 border-t border-gray-200 mt-8 pt-20"
     >
       <div className="max-w-4xl mx-auto p-8">
         <a href="/industries" className="text-blue-600 underline">
@@ -28,8 +27,21 @@ export default function IndustryDetailClient({ item }: { item: Industry }) {
 
         <article
           className="prose lg:prose-lg max-w-none"
-          dangerouslySetInnerHTML={{ __html: item.body }}
+          dangerouslySetInnerHTML={{ __html: item.body ?? "" }}
         />
+
+        {/* <article>
+          this is exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculture
+        </article> */}
       </div>
     </motion.section>
   );
