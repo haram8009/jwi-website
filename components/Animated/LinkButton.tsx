@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
+const MotionLink = motion(Link);
+
 export function LinkButton({
   href,
   children,
@@ -16,8 +18,8 @@ export function LinkButton({
   className?: string;
 }) {
   return (
-    <Link href={href} passHref>
-      <motion.a
+    <MotionLink
+        href={href}
         whileTap={{ scale: 0.95 }}
         whileHover={{ scale: 1.02, boxShadow: "0 8px 20px rgba(0,0,0,.08)" }}
         transition={{ type: "spring", stiffness: 250, damping: 18 }}
@@ -30,8 +32,7 @@ export function LinkButton({
         )}
       >
         {children}
-      </motion.a>
-    </Link>
+      </MotionLink>
   );
 }
 

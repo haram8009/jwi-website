@@ -4,6 +4,7 @@ import { Send } from "lucide-react";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Button from "@/components/Animated/Button";
 
 export default function ContactPage() {
   return (
@@ -66,15 +67,12 @@ export default function ContactPage() {
                   required
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-800 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition"
-              >
+              <Button type="submit" variant="primary" className="gap-2 items-center">
                 <Send className="w-5 h-5" />
-                Send Message
-              </button>
+                <span> Send Message</span>
+              </Button>
             </form>
-          </div>{" "}
+          </div>
           {/* 지도 */}
           <div className="rounded-xl overflow-hidden shadow-lg">
             <iframe

@@ -50,7 +50,7 @@ export default function ContactInfoCards() {
             className={`group bg-white hover:bg-blue-600 text-gray-900 hover:text-white hover:shadow-xl rounded-xl shadow-sm transition duration-300 p-6 flex items-start gap-4`}
           >
             <div
-              className={`bg-blue-100 p-3 rounded-full flex items-center justify-center`}
+              className={`bg-blue-100 p-3 rounded-full flex items-center justify-center text-black`}
             >
               {icon}
             </div>

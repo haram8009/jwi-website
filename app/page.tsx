@@ -4,9 +4,13 @@ import Link from "next/link";
 import LinkButton from "@/components/Animated/LinkButton";
 import FlyInText from "@/components/Animated/FlyInText";
 import ServiceGrid from "@/components/services/ServiceGrid";
-import Button from "@/components/Animated/Button";
+import InfiniteVerticalCarousel from "@/components/common/InfiniteVerticalCarousel";
+import IndustryTile from "@/components/industries/IndustryTile";
+import { industries, SPEED, COLS } from "@/data/industries"; // 데이터 분리
 
 export default function HomePage() {
+  const Columns = COLS.lg;
+
   return (
     <>
       {/* Hero */}
@@ -15,15 +19,21 @@ export default function HomePage() {
         style={{ backgroundImage: "url(/assets/hero-bg.jpg)" }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex items-center justify-center text-center px-4 h-full text-left">
+        <div className="max-w-7xl mx-auto relative z-10 flex items-end px-4 h-full text-left">
           <FlyInText direction="left" className="mb-8">
-            <div className="text-white max-w-3xl">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Adding Values to your Cargo
+            <div className="text-white">
+              <h1 className="text-7xl md:text-8xl font-bold mb-20">
+                "Adding Values to your Cargo!"
               </h1>
-              <FlyInText direction="bottom">
-                Global logistics & supply chain solutions tailored to your
-                business.
+              <FlyInText
+                direction="bottom"
+                className="text-1xl md:text-2xl mb-8 text-gray-300"
+              >
+                James Worldwide moves your cargo in the safest and fastest way
+                possible, <br />
+                keeping you informed every step of the way and providing
+                customized & innovative solutions, <br />
+                thereby adding great values to your cargo
               </FlyInText>
               <LinkButton href="/contact">Get a Quote</LinkButton>
             </div>
@@ -33,57 +43,6 @@ export default function HomePage() {
 
       {/* Services */}
       <ServiceGrid />
-      {/* <section className="py-20 bg-blue-50">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-semibold text-blue-800 mb-10">
-            Our Core Services
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Ocean Freight",
-                desc: "Global shipping via FCL/LCL containers.",
-              },
-              {
-                title: "Air Freight",
-                desc: "Fast and reliable international air cargo.",
-              },
-              {
-                title: "Trucking",
-                desc: "Flexible inland transportation nationwide.",
-              },
-              {
-                title: "Rail & Intermodal",
-                desc: "Cost-effective rail freight across regions.",
-              },
-              {
-                title: "Warehousing",
-                desc: "3PL, fulfillment, and inventory storage.",
-              },
-              {
-                title: "Customs Brokerage",
-                desc: "Clearance services for seamless trade.",
-              },
-            ].map((s, i) => (
-              <div
-                key={i}
-                className="bg-white p-6 rounded shadow hover:shadow-lg transition"
-              >
-                <h3 className="text-xl font-bold text-blue-800 mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-gray-600">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-          <Link
-            href="/services"
-            className="inline-block mt-10 text-blue-700 hover:underline"
-          >
-            View All Services →
-          </Link>
-        </div>
-      </section> */}
 
       {/* About */}
       <section className="py-16 bg-white">
@@ -98,7 +57,17 @@ export default function HomePage() {
           </p>
         </div>
       </section>
-
+      {/* Infinite vertical columns */}
+      <section className="bg-white overflow-hidden max-h-[calc(100vh-200px)]">
+        <InfiniteVerticalCarousel
+          items={industries} // 배열 (ratio 포함)
+          columns={Columns}
+          baseDuration={SPEED}
+          renderItem={(item, i) => (
+            <IndustryTile key={item.title + i} {...item} index={i} />
+          )}
+        />
+      </section>
       {/* Global Network */}
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
