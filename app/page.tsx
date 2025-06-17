@@ -6,7 +6,7 @@ import FlyInText from "@/components/Animated/FlyInText";
 import ServiceGrid from "@/components/services/ServiceGrid";
 import InfiniteVerticalCarousel from "@/components/common/InfiniteVerticalCarousel";
 import IndustryTile from "@/components/industries/IndustryTile";
-import { industries, SPEED, COLS } from "@/data/industries"; // 데이터 분리
+import { industries, SPEED, COLS } from "data/industries"; // 데이터 분리
 
 export default function HomePage() {
   const Columns = COLS.lg;

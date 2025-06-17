@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import IndustryTile from "@/components/industries/IndustryTile";
-import { industries, ratioCycle } from "@/data/industries"; // 데이터 분리
+import { industries, ratioCycle } from "data/industries"; // 데이터 분리
 
 export default function IndustriesPage() {
   return (
