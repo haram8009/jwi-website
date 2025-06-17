@@ -1,0 +1,59 @@
+"use client";
+import { notFound } from "next/navigation";
+import { industries } from "@/data/industries";
+import { motion } from "framer-motion";
+
+export function generateStaticParams() {
+  return industries.map((i) => ({ slug: i.slug }));
+}
+
+export default function IndustryDetail({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const item = industries.find((i) => i.slug === params.slug);
+  if (!item) notFound();
+
+  return (
+    <motion.section
+      key={item.slug}
+      initial={{ opacity: 0, y: 60 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 60 }}
+      transition={{ duration: 0.45 }}
+      className="bg-gray-50 border-t border-gray-200 mt-8"
+    >
+      <div className="max-w-4xl mx-auto p-8">
+        <a href="/industries" className="text-blue-600 underline">
+          ← Back to industries
+        </a>
+
+        <h2 className="text-3xl font-bold my-4">{item.title}</h2>
+        {item.img && (
+          <img
+            src={item.img}
+            alt={item.title}
+            className="rounded-xl shadow mb-8"
+          />
+        )}
+        {/* <article
+          className="prose lg:prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: item.body }}
+        /> */}
+        <article>
+          this is exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculturethis is exhibition this is
+          agriculturethis is exhibition this is agriculturethis is exhibition
+          this is agriculturethis is exhibition this is agriculturethis is
+          exhibition this is agriculture
+        </article>
+      </div>
+    </motion.section>
+  );
+}

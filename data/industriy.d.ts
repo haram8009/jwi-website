@@ -3,4 +3,6 @@ type Industry = {
     desc: string;
     img: string;
     ratio?: "square" | "portrait" | "landscape" | "tall" | "wide";
+    slug?: string;
+    tagline?: string;
 };
