@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  Marker,
+  InfoWindow,
+  useJsApiLoader,
+} from "@react-google-maps/api";
 import customMapStyle from "@/data/googlemaps.json";
 
 // 브랜치 데이터 (예시)
@@ -41,14 +46,18 @@ const mapContainerStyle = {
 const center = { lat: 20.5, lng: -40 }; // 적당히 글로벌 브랜치가 한눈에 보이도록
 
 export default function GlobalBranchesMap() {
-  const [selected, setSelected] = useState(null);
-
+  const [selected, setSelected] = useState<number | null>(null);
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
   });
 
-  if (!isLoaded) return <div className="w-full h-[400px] flex items-center justify-center text-blue-800">Loading map...</div>;
+  if (!isLoaded)
+    return (
+      <div className="w-full h-[400px] flex items-center justify-center text-blue-800">
+        Loading map...
+      </div>
+    );
 
   return (
     <section className="py-16 bg-white">
@@ -69,7 +78,7 @@ export default function GlobalBranchesMap() {
               streetViewControl: false,
               fullscreenControl: false,
               clickableIcons: false,
-              styles: customMapStyle
+              styles: customMapStyle,
             }}
           >
             {branches.map((branch, i) => (
@@ -91,8 +100,12 @@ export default function GlobalBranchesMap() {
                 onCloseClick={() => setSelected(null)}
               >
                 <div>
-                  <div className="font-bold text-blue-700">{branches[selected].name}</div>
-                  <div className="text-gray-700 text-sm">{branches[selected].desc}</div>
+                  <div className="font-bold text-blue-700">
+                    {branches[selected].name}
+                  </div>
+                  <div className="text-gray-700 text-sm">
+                    {branches[selected].desc}
+                  </div>
                 </div>
               </InfoWindow>
             )}
