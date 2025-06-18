@@ -48,7 +48,7 @@ function NavLinks() {
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Services" },
     { href: "/industries", label: "Industries" },
-    // { href: "/careers", label: "Careers" },
+    { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
   ];
   return (
@@ -57,7 +57,7 @@ function NavLinks() {
         <Link
           key={href}
           href={href}
-          className="hover:text-blue-500 transition-colors duration-200 "
+          className="hover:text-blue-500 transition-colors duration-200 text-shadow-lg"
         >
           {label}
         </Link>

@@ -8,12 +8,15 @@ module.exports = {
     extend: {
       colors: {
         "brand-blue": { DEFAULT: "#0D4C92" },
-        "brand-red":  { DEFAULT: "#9E1B30" },
-        "blue-tint":  { DEFAULT: "#E6EFF9" },
-        "red-tint":   { DEFAULT: "#FDECEE" },
+        "brand-red": { DEFAULT: "#9E1B30" },
+        "blue-tint": { DEFAULT: "#E6EFF9" },
+        "red-tint": { DEFAULT: "#FDECEE" },
       },
     },
   },
+  plugins: [
+    require("@designbycode/tailwindcss-text-shadow"),
+  ],
 };
 
 console.log("Tailwind CSS configuration loaded successfully.");
