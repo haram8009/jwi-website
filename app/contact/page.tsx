@@ -2,9 +2,8 @@
 import Link from "next/link";
 import { Send } from "lucide-react";
 import ContactInfoCards from "@/components/contact/ContactInfoCards";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import Button from "@/components/Animated/Button";
+import ContactForm from "@/components/contact/ContactForm";
 
 export default function ContactPage() {
   return (
@@ -28,50 +27,12 @@ export default function ContactPage() {
       {/* Contact Form & Map */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-          {/* 폼 */}
+          {/* Form */}
           <div className="bg-white shadow-lg rounded-xl p-8">
             <h2 className="text-2xl font-bold text-primary mb-6">
               Send us a message
             </h2>
-            <form className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="John Doe"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-primary focus:border-primary"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="you@example.com"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-primary focus:border-primary"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Your Message
-                </label>
-                <textarea
-                  rows={5}
-                  placeholder="Type your message here..."
-                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-primary focus:border-primary"
-                  required
-                />
-              </div>
-              <Button type="submit" variant="primary" className="gap-2 items-center">
-                <Send className="w-5 h-5" />
-                <span> Send Message</span>
-              </Button>
-            </form>
+            <ContactForm />
           </div>
           {/* 지도 */}
           <div className="rounded-xl overflow-hidden shadow-lg">
