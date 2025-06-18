@@ -15,6 +15,7 @@ interface Props {
   href?: string;
   ratio?: Ratio;
   index?: number;
+  scroll?: boolean;
 }
 
 export default function IndustryTile({
@@ -24,6 +25,7 @@ export default function IndustryTile({
   href = "/industries",
   ratio = "square",
   index = 0,
+  scroll = true,
 }: Props) {
   const pathname = usePathname();
   const samePage = href === pathname;
@@ -85,6 +87,7 @@ export default function IndustryTile({
           href={href}
           aria-label={`${title} details`}
           className={`block relative overflow-hidden rounded-lg shadow-md group ${ratioClass[ratio]}`}
+          scroll={scroll}
         >
           {CardInner}
         </Link>

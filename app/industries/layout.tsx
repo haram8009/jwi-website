@@ -18,19 +18,30 @@ export default function IndustriesLayout({
 }) {
   const segment = useSelectedLayoutSegment(); // ex) "furniture" | null
   const detailRef = useRef<HTMLDivElement>(null);
-
+  const prev = useRef<string | null>(null);
   // segment 생기면 디테일 영역으로 부드러운 스크롤
   // 부드러운 스크롤 (맞춤 시간 / ease)
   useEffect(() => {
-    if (segment && detailRef.current) {
+    // ── 1) 첫 마운트 ──
+    if (prev.current === null && !segment) {
+      prev.current = "init"; // 값만 기록
+      window.scrollTo(0, 0); // 페이지 상단으로 스크롤
+      return;
+    }
+
+    // ── 2) 내부에서 slug 가 바뀔 때만 스크롤 ──
+    if (prev.current !== segment && segment && detailRef.current) {
       const targetY =
         detailRef.current.getBoundingClientRect().top + window.scrollY - 16;
       animate(window.scrollY, targetY, {
-        duration: 0.7, // 원하는 만큼 조절
+        duration: 0.7,
         ease: [0.25, 0.8, 0.25, 1],
         onUpdate: (v) => window.scrollTo(0, v),
       });
     }
+
+    // ── 3) slug → null(뒤로가기) 이면 아무 것도 안 함(원래 위치 유지) ──
+    prev.current = segment ?? null;
   }, [segment]);
 
   return (
@@ -49,25 +60,25 @@ export default function IndustriesLayout({
       <section className="py-16 bg-white">
         <div className="columns-2 sm:columns-3 lg:columns-4 gap-4 px-4 max-w-7xl mx-auto">
           {industries.map((it, i) => (
-            <Link key={it.slug} href={`/industries/${it.slug}`} scroll={false}>
-              <IndustryTile
-                {...it}
-                ratio="square"
-                index={i}
-                href={`/industries/${it.slug}`}
-              />
-            </Link>
-          ))}
-          <Link key={"more-industries"} href="/contact">
             <IndustryTile
-              title="More Industries"
-              desc="Explore our full range of industry solutions."
-              img="/assets/industries/more.jpg"
-              ratio={"long"}
-              href="/contact"
-              index={industries.length}
+              key={it.slug}
+              scroll={false}
+              {...it}
+              ratio="square"
+              index={i}
+              href={`/industries/${it.slug}`}
             />
-          </Link>
+          ))}
+
+          <IndustryTile
+            key={"more-industries"}
+            title="More Industries"
+            desc="Explore our full range of industry solutions."
+            img="/assets/industries/more.jpg"
+            ratio={"long"}
+            href="/contact"
+            index={industries.length}
+          />
         </div>
       </section>
 
